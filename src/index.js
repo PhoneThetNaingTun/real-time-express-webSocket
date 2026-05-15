@@ -20,9 +20,9 @@ const { broadcastMatchCreate } = attachWebSocketServer(server);
 app.locals.broadcastMatchCreate = broadcastMatchCreate;
 
 server.listen(PORT, HOST, () => {
-  const baseUrl = HOST === "0.0.0.0" ? `http://localhost:${PORT}` : HOST;
-  console.log(`Server is listening on PORT ${baseUrl}`);
-  console.log(
-    `WebSocket server is listening on ${baseUrl.replace("http", "ws")}/ws`,
-  );
+  const displayHost = HOST === "0.0.0.0" ? "localhost" : HOST;
+  const httpUrl = `http://${displayHost}:${PORT}`;
+  const wsUrl = `ws://${displayHost}:${PORT}/ws`;
+  console.log(`Server is listening on ${httpUrl}`);
+  console.log(`WebSocket server is listening on ${wsUrl}`);
 });
